@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Goal
   - Switch
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -38,10 +39,13 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Editor
   m_SortingLayers:
   - name: Background
     uniqueID: 640485187
+    locked: 0
+  - name: Mirror Background
+    uniqueID: 2653623253
     locked: 0
   - name: Default
     uniqueID: 0
@@ -51,4 +55,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3302465973
+    locked: 0
+  - name: Blinder
+    uniqueID: 3777786355
+    locked: 0
+  - name: Transition
+    uniqueID: 2958556337
     locked: 0

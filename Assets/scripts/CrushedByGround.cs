@@ -5,68 +5,68 @@ using UnityEngine.Tilemaps;
 
 public class CrushedByGround : MonoBehaviour {
 
-    [SerializeField] private Tilemap jumpableGround;
-    [SerializeField] private TilemapCollider2D jumpableGroundCollide;
-    [SerializeField] private Tilemap warpableGround;
-    [SerializeField] private TilemapCollider2D warpableGroundCollide;
-    [SerializeField] private Tilemap looperGround;
-    [SerializeField] private TilemapCollider2D looperCollide;
+    //I don't know why, but triple checking is necessary
+    static int TotalCheckCount = 2;
 
-    private BoxCollider2D collide;
-    private SpriteRenderer sprite;
+    [SerializeField] BoxCollider2D collide;
 
-    void Start () {
-        collide = GetComponent<BoxCollider2D>();
-        sprite = GetComponent<SpriteRenderer>();
+    List<Tilemap> intersecting = new List<Tilemap>();
+
+    int checkCount = 0;
+
+    public void OnTriggerEnter2D (Collider2D other) {
+
+        Tilemap map = other.gameObject.GetComponent<Tilemap>();
+
+        if (map == null) return;
+
+        intersecting.Add(map);
     }
 
-    // Update is called once per frame
-    void Update () {
-        if (!collide.enabled)  {
-            return;
-        }
+    public void OnTriggerExit2D (Collider2D other)
+    {
+        Tilemap map = other.gameObject.GetComponent<Tilemap>();
 
-        int x = Mathf.FloorToInt(transform.position.x);
-        int y = Mathf.FloorToInt(transform.position.y - 0.25f);
+        if (map == null) return;
 
-        Vector3Int checkPos = new Vector3Int(x, y, 0);
-
-        if (jumpableGroundCollide.enabled) {
-            TileBase t = jumpableGround.GetTile(checkPos);
-
-            if (t != null) {
-                squish();
-            }
-        }
-
-        if (warpableGround.enabled) {
-            TileBase t = warpableGround.GetTile(checkPos);
-
-            if (t != null) {
-                squish();
-            }
-        }
-
-        if (looperCollide.enabled) {
-            TileBase t = looperGround.GetTile(checkPos);
-
-            if (t != null) {
-                squish();
-            }
-        }
+        intersecting.Remove(map);
     }
 
-    private void squish () {
+    public void FixedUpdate()
+    {
 
-        PlayerMovement move = collide.gameObject.GetComponent<PlayerMovement>();
 
-        if (move != null) {
-            move.dead = true;
-        } else  {
-            AudioManager.instance.PlaySound("die");
+        //Debug.Log(intersecting.Count);
 
-            collide.enabled = false;
-            sprite.enabled = false;
+        if (intersecting.Count > 0)
+        {
+
+            if (checkCount < TotalCheckCount)
+            {
+                checkCount++;
+                return;
+            }
+
+
+            PlayerMovement move = collide.gameObject.GetComponentInParent<PlayerMovement>();
+
+            if (move != null)
+            {
+                move.kill();
+                
+            }
+            else
+            {
+                
+                EnemyInstance inst = GetComponentInParent<EnemyInstance>();
+                EnemyController wrap = inst.GetComponentInParent<EnemyController>();
+
+                wrap.KillCopy(inst.x, inst.y);
+            }
+        } else
+        {
+            checkCount = 0;
         }
+
     }
 }

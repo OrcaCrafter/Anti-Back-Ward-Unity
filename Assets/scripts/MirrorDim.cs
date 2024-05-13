@@ -31,7 +31,7 @@ public class MirrorDim : MonoBehaviour {
         fog.color = fogColor;
     }
     
-    void Update () {
+    void FixedUpdate () {
         if ((activeRegion != -1) && (xScreenOff != setXScreenOff || yScreenOff != setYScreenOff)) {
             xScreenOff = setXScreenOff;
             yScreenOff = setYScreenOff;

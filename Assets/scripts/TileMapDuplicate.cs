@@ -44,7 +44,7 @@ public class TileMapDuplicate : MonoBehaviour {
         }
     }
     
-    void Update () {
+    void FixedUpdate () {
         if (!readRender.sortingLayerName.Equals(writeRender.sortingLayerName)) {
             writeRender.sortingLayerName = readRender.sortingLayerName;
         }

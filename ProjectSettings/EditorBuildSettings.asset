@@ -5,11 +5,11 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/test.unity
-    guid: 606156d97fa6c1242b27a959b4104a71
   - enabled: 1
-    path: Assets/Main Menu.unity
+    path: Assets/Levels/Pre Load.unity
+    guid: f630a3e303ff65644852b968e8bcf023
+  - enabled: 1
+    path: Assets/Levels/Main Menu.unity
     guid: 951b8277eab42db46974e82b1eb7252c
   - enabled: 1
     path: Assets/Levels/Level 1.unity
@@ -25,10 +25,10 @@ EditorBuildSettings:
     guid: 8bbb9e1304f29034aa219b7badd362d4
   - enabled: 1
     path: Assets/Levels/Level 5.unity
-    guid: 86d0f6a74312e8a4d941666edfac7c64
+    guid: 06042f03a8b498b468af9035af45c844
   - enabled: 1
     path: Assets/Levels/Level 6.unity
-    guid: 06042f03a8b498b468af9035af45c844
+    guid: e9b2e49b6a5743e4aad4b815a713592c
   - enabled: 1
     path: Assets/Levels/Level 7.unity
     guid: 4f0034b0a760e144dabb06cd8386b05f
@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/Levels/Level 8.unity
     guid: ccb304de7dfdb3c4790b667e876c4056
   - enabled: 1
-    path: Assets/Ending.unity
-    guid: 35b1469f3058b5443a5ee85e7e3de779
+    path: Assets/Levels/Level Select.unity
+    guid: 3252be694ccfe4f4aba665412ed337c9
+  - enabled: 1
+    path: Assets/Levels/Credits.unity
+    guid: 9926ee021b3fe5c4f87bcf9c856e04f6
   m_configObjects: {}
